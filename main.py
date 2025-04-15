@@ -11,6 +11,10 @@ from urllib.parse import urlencode
 
 init(autoreset=True)
 
+
+number = 4 # account amount
+
+
 tickers = "BTC", "SOL", "ETH"  # тикеры торговых пар
 
 long_short = "Bid", "Ask"
@@ -264,12 +268,12 @@ async def order_cansel_backpack(api, secret, ticker, proxy): # закртыти�
                     print(Fore.RED + "Сделал 3 попытки закрытия позиции, что-то пошло не так, проверь руками")
                     exit()
 
-async def start_main():
+async def start_main(): # основная функция запуска
 
     with open("key.json", "r", encoding="utf-8") as file:
         data = json.load(file)
     try:
-        for i in range(7):
+        for i in range(number):
             i+=1
 
             api1 = data[f"key_pair{i}"][f"api1"]
