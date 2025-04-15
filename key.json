@@ -1,0 +1,30 @@
+{
+  "key_pair1": {
+    "api1": "",
+    "secret1": "",
+    "api2": "",
+    "secret2": "",
+    "proxy": ""
+  },
+  "key_pair2": {
+    "api1": "",
+    "secret1": "",
+    "api2": "",
+    "secret2": "",
+    "proxy": ""
+  },
+  "key_pair3": {
+    "api1": "",
+    "secret1": "",
+    "api2": "",
+    "secret2": "",
+    "proxy": ""
+  },
+  "key_pair4": {
+    "api1": "",
+    "secret1": "",
+    "api2": "",
+    "secret2": "",
+    "proxy": ""
+  }
+}
