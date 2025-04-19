@@ -8,12 +8,9 @@ from colorama import Fore, Style, init
 import re
 from cryptography.hazmat.primitives.asymmetric import ed25519
 from urllib.parse import urlencode
+from datetime import datetime
 
 init(autoreset=True)
-
-
-number = 4 # account amount
-
 
 tickers = "BTC", "SOL", "ETH"  # тикеры торговых пар
 
@@ -268,51 +265,58 @@ async def order_cansel_backpack(api, secret, ticker, proxy): # закртыти�
                     print(Fore.RED + "Сделал 3 попытки закрытия позиции, что-то пошло не так, проверь руками")
                     exit()
 
-async def start_main(): # основная функция запуска
+async def start_main():
 
-    with open("key.json", "r", encoding="utf-8") as file:
-        data = json.load(file)
-    try:
-        for i in range(number):
-            i+=1
+    while True:
 
-            api1 = data[f"key_pair{i}"][f"api1"]
-            secret1 = data[f"key_pair{i}"][f"secret1"]
+        with open("key.json", "r", encoding="utf-8") as file:
+            data = json.load(file)
+        try:
+            for i in range(7):
+                i+=1
+                formatted_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                print(formatted_datetime)
 
-            api2 = data[f"key_pair{i}"][f"api2"]
-            secret2 = data[f"key_pair{i}"][f"secret2"]
+                api1 = data[f"key_pair{i}"][f"api1"]
+                secret1 = data[f"key_pair{i}"][f"secret1"]
 
-            proxy = data[f"key_pair{i}"]["proxy"]
+                api2 = data[f"key_pair{i}"][f"api2"]
+                secret2 = data[f"key_pair{i}"][f"secret2"]
 
-            connect = await is_proxy(data[f"key_pair{i}"]["proxy"])
+                proxy = data[f"key_pair{i}"]["proxy"]
 
-
-            if connect == True:
-
-                await main(api1, secret1, api2, secret2, proxy)
-
-                time_sleep_after = random.randint(25 * 60, 42 * 60)  # задержка перед следующим циклом
-
-                print()
-                print(f"Выполнил действия для счета {i}, ожидаю  {time_sleep_after/60} минут перед следующим")
-                await asyncio.sleep(time_sleep_after)
-                print()
-            else:
-                print(f"Прокси на аке {i} не рабочий")
-
-    except Exception as e:
-        print(Fore.RED + f"Произошла ошибка: {str(e)}")
+                connect = await is_proxy(data[f"key_pair{i}"]["proxy"])
 
 
+                if connect == True:
+
+                    z = i
+                    await main(api1, secret1, api2, secret2, proxy, z)
+
+                    time_sleep_after = random.randint(20 * 60, 30 * 60)  # задержка перед следующим циклом
+
+                    print()
+                    print(f"Выполнил действия для счета {i}, ожидаю  {time_sleep_after/60} минут перед следующим")
+                    formatted_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    print(formatted_datetime)
+                    await asyncio.sleep(time_sleep_after)
+                    print()
+                else:
+                    print(f"Прокси на аке {i} не рабочий")
+
+        except Exception as e:
+            print(Fore.RED + f"Произошла ошибка: {str(e)}")
 
 
-async def main(api1, secret1, api2, secret2, proxy):
+
+
+async def main(api1, secret1, api2, secret2, proxy, z):
 
     total = []
 
     coms = []
 
-    rang = random.randint(5, 8)
+    rang = random.randint(5, 10)
 
     for i in range(rang):
 
@@ -334,6 +338,8 @@ async def main(api1, secret1, api2, secret2, proxy):
 
         print(Fore.MAGENTA + f"Отрабатываю цикл {i}")
         print()
+        formatted_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        print(formatted_datetime)
 
 
         positions2 = positions
@@ -421,11 +427,31 @@ async def main(api1, secret1, api2, secret2, proxy):
             print("Отработал все циклы для счета")
             break
         print(f"Ожидаю перед новой сделкой {time_sleep_after / 60}")
+        formatted_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        print(formatted_datetime)
         await asyncio.sleep(time_sleep_after)
     print()
     print(Fore.YELLOW + f"За цикл набил {sum(total)}")
     print()
     print(Fore.YELLOW + f"Потрачено было {sum(coms)}")
+
+    # запрись данных объема и затрат на ак
+    with open("key.json", "r", encoding="utf-8") as file:
+        data = json.load(file)
+
+
+    data[f"key_pair{z}"]["volume"] += sum(total)
+    data[f"key_pair{z}"]["coms"] += sum(coms)
+
+
+
+
+    with open("key.json", "w", encoding='utf-8') as file:
+        json.dump(data, file, ensure_ascii=False, indent=4)
+    print()
+    print("Сделал запись данных")
+    formatted_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    print(formatted_datetime)
 
 
 
