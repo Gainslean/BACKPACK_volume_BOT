@@ -9,10 +9,10 @@ import re
 from cryptography.hazmat.primitives.asymmetric import ed25519
 from urllib.parse import urlencode
 from datetime import datetime
+from setting import tickers,number_acc,time_acc_from,time_acc_to,trade_from,trade_to,time_trade_sleep_from,time_trade_sleep_to,time_after_trade_sleep_from,time_after_trade_sleep_to
 
 init(autoreset=True)
 
-tickers = "BTC", "SOL", "ETH"  # тикеры торговых пар
 
 long_short = "Bid", "Ask"
 
@@ -272,7 +272,7 @@ async def start_main():
         with open("key.json", "r", encoding="utf-8") as file:
             data = json.load(file)
         try:
-            for i in range(7):
+            for i in range(number_acc):
                 i+=1
                 formatted_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 print(formatted_datetime)
@@ -293,7 +293,7 @@ async def start_main():
                     z = i
                     await main(api1, secret1, api2, secret2, proxy, z)
 
-                    time_sleep_after = random.randint(20 * 60, 30 * 60)  # задержка перед следующим циклом
+                    time_sleep_after = random.randint(time_acc_from * 60, time_acc_to * 60)  # задержка перед следующим циклом
 
                     print()
                     print(f"Выполнил действия для счета {i}, ожидаю  {time_sleep_after/60} минут перед следующим")
@@ -316,7 +316,7 @@ async def main(api1, secret1, api2, secret2, proxy, z):
 
     coms = []
 
-    rang = random.randint(5, 10)
+    rang = random.randint(trade_from, trade_to)
 
     for i in range(rang):
 
@@ -326,9 +326,9 @@ async def main(api1, secret1, api2, secret2, proxy, z):
 
         positions = random.choice(long_short)
 
-        time_sleep = random.randint(100, 500) # время задержки между открытием и закрытием поз
+        time_sleep = random.randint(time_trade_sleep_from, time_trade_sleep_to) # время задержки между открытием и закрытием поз
 
-        time_sleep_after = random.randint(3*60, 15*60) # задержка перед следующим циклом
+        time_sleep_after = random.randint(time_after_trade_sleep_from*60, time_after_trade_sleep_to*60) # задержка перед следующим циклом
 
         om = await get_balance_back(api=api1, secret=secret1, proxy=proxy)
 
