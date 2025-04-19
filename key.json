@@ -4,27 +4,35 @@
     "secret1": "",
     "api2": "",
     "secret2": "",
-    "proxy": ""
+    "proxy": "" ,
+    "volume": 0,
+    "coms": 0
   },
   "key_pair2": {
     "api1": "",
     "secret1": "",
     "api2": "",
     "secret2": "",
-    "proxy": ""
+    "proxy": "",
+    "volume": 0,
+    "coms": 0
   },
   "key_pair3": {
     "api1": "",
     "secret1": "",
     "api2": "",
     "secret2": "",
-    "proxy": ""
+    "proxy": "",
+    "volume": 0,
+    "coms": 0
   },
   "key_pair4": {
     "api1": "",
     "secret1": "",
     "api2": "",
     "secret2": "",
-    "proxy": ""
+    "proxy": "",
+    "volume": 0,
+    "coms": 0
   }
 }
