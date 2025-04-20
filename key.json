@@ -1,10 +1,10 @@
 {
   "key_pair1": {
-    "api1": "",
-    "secret1": "",
-    "api2": "",
-    "secret2": "",
-    "proxy": "" ,
+    "api1": "YOUR_API_MAIN",
+    "secret1": "YOUR_SECRET_MAIN",
+    "api2": "YOUR_API_SUB",
+    "secret2": "YOUR_SECRET_SUB",
+    "proxy": "username:password@ip:port" ,
     "volume": 0,
     "coms": 0
   },
