@@ -13,7 +13,8 @@
 1. Апи ключи можнно получить тут https://backpack.exchange/portfolio/settings/api-keys
 2. Proxy я брал тут https://spaceproxy.net?ref=22824 . Купон на скидку 10% thpw4G58bQrwlPVkDec . формат прокси username:password@ip:port
 3. Заполняем настройки под себя в файле setting .
-4. Скрипт запускается файлом main.
+4. Выполняем установку зависимостей  pip install -r requirements.txt
+5. Скрипт запускается файлом main.
 
 ВНИМАНИЕ!!!  СКРИПТ РАБОТАЕТ В БЕСКОНЕЧНОМ ЦИКЛЕ, НЕПРЕРВЫВНО ПЕРЕБИРАЯ ВСЕ КОШЕЛЬКИ ПО КРУГУ.  ВНИМАНИЕ!!!!
 
