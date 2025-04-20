@@ -5,6 +5,10 @@
 
 РЕГИСТРАЦИЯ НА БЭКПАК https://backpack.exchange/refer/fs6dr6pw
 
+Создаете суб акунт. Пополняете счет USDC. ПЕРЕВОДИТЕ 50% ЮСДС НА СУБ АК.
+
+!!!!!ВНИМАНИЕ     ВКЛЮЧАЕТЕ АВТОЛЕНД ДЛЯ МЕЙН И СУБ СЧЕТ https://backpack.exchange/lend/USDC      ВНИМАНИЕ!!!!!!
+
 Настройка скрипта очень простая, вам нужно заполнить данные в файле key:
 1. Апи ключи можнно получить тут https://backpack.exchange/portfolio/settings/api-keys
 2. Proxy я брал тут https://spaceproxy.net?ref=22824 . Купон на скидку 10% thpw4G58bQrwlPVkDec . формат прокси username:password@ip:port
