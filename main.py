@@ -22,25 +22,29 @@ window = 8000  # окно действия сигнатруры, служит к
 
 async def is_proxy(proxy):  # функция проверки прокси на рабоспособность
 
-    match = re.search(r'@([^:]+)(?::|$)', proxy)
-    if match:
-        possible_ip = match.group(1)
-        print(Fore.YELLOW + f"Проверяю {possible_ip}")
+    try:
+        match = re.search(r'@([^:]+)(?::|$)', proxy)
+        if match:
+            possible_ip = match.group(1)
+            print(Fore.YELLOW + f"Проверяю {possible_ip}")
 
 
-    url = "https://api.ipify.org/"
-    proxy_url = f"http://{proxy}"
-    async with aiohttp.ClientSession() as session:
-        async with session.get(url=url, proxy=proxy_url) as response:
-            if response.status == 200:
-                data = await response.text()
-                if data == possible_ip:
-                    print(Fore.GREEN + f"{proxy} рабочий")
-                    return True
-            else:
-                error_text = await response.text()
-                print(Fore.RED + f"Ошибка: {response.status} - {error_text}")
-                return False
+        url = "https://api.ipify.org/"
+        proxy_url = f"http://{proxy}"
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url=url, proxy=proxy_url) as response:
+                if response.status == 200:
+                    data = await response.text()
+                    if data == possible_ip:
+                        print(Fore.GREEN + f"{proxy} рабочий")
+                        return True
+                else:
+                    error_text = await response.text()
+                    print(Fore.RED + f"Ошибка: {response.status} - {error_text}")
+                    return False
+    except Exception as e:
+        print(e)
+        return False
 
 
 async def get_market_back(ticker): # функция получения цены актива на бэкпаке. возвращает текущую цену на фьючах
@@ -260,10 +264,10 @@ async def order_cansel_backpack(api, secret, ticker, proxy): # закртыти�
                 break
             else:
                 print(Fore.RED + "Снова ощибка")
-                await asyncio.sleep(0.1)
+                await asyncio.sleep(2)
                 if i ==3:
                     print(Fore.RED + "Сделал 3 попытки закрытия позиции, что-то пошло не так, проверь руками")
-                    exit()
+                    break
 
 async def start_main():
 
