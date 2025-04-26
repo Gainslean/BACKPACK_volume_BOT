@@ -6,7 +6,9 @@
     "secret2": "YOUR_SECRET_SUB",
     "proxy": "username:password@ip:port" ,
     "volume": 0,
-    "coms": 0
+    "coms": 0,
+    "volume_spot": 0,
+    "coms_spot": 0
   },
   "key_pair2": {
     "api1": "",
@@ -15,7 +17,9 @@
     "secret2": "",
     "proxy": "",
     "volume": 0,
-    "coms": 0
+    "coms": 0,
+    "volume_spot": 0,
+    "coms_spot": 0
   },
   "key_pair3": {
     "api1": "",
@@ -24,7 +28,9 @@
     "secret2": "",
     "proxy": "",
     "volume": 0,
-    "coms": 0
+    "coms": 0,
+    "volume_spot": 0,
+    "coms_spot": 0
   },
   "key_pair4": {
     "api1": "",
@@ -33,6 +39,8 @@
     "secret2": "",
     "proxy": "",
     "volume": 0,
-    "coms": 0
+    "coms": 0,
+    "volume_spot": 0,
+    "coms_spot": 0
   }
 }
